@@ -50,6 +50,9 @@ class GraphManager:
 
         labels = nx.get_edge_attributes(self.G, 'weight')
         nx.draw_networkx_edge_labels(self.G, pos, edge_labels=labels)
+    
+    def cut_cost(self, set_A, set_B):
+        return nx.cut_size(self.G, set_A, set_B, weight='weight')
 
 if __name__ == "__main__":
     GraphManager('maxcut/set0a/n0000006i00.txt', verbose=True)
