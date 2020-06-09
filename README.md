@@ -5,3 +5,7 @@ members :
 - Thalis Papakyriakou
 - Isha Dijcks
 - Rickard Hellström
+
+
+## Instructions 
+save the maxcut instances under `/data/maxcut`. Example of a `.txt` file relative path would be `data/maxcut/set0a/n0000006i00.txt`
