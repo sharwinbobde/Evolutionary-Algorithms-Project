@@ -28,10 +28,9 @@ class GraphManager:
             for i, line in enumerate(f):
                 if i == self.e:
                     break
-                edge = list(map(int, f.readline().split()))
-                if len(edge) == 3:
-                    edges.append(edge)
-            # print(edges)
+                edge = list(map(int, line.split()))
+                edges.append(edge)
+            print(edges)
             self.raw_edges = edges
 
     def make_graph(self):
