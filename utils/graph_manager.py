@@ -30,7 +30,7 @@ class GraphManager:
                     break
                 edge = list(map(int, line.split()))
                 edges.append(edge)
-            print(edges)
+            # print(edges)
             self.raw_edges = edges
 
     def make_graph(self):
