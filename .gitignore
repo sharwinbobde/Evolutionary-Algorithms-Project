@@ -9,6 +9,9 @@ settings.json
 !.vscode/extensions.json
 *.code-workspace
 
+*.jpg
+*.png
+
 # Local History for Visual Studio Code
 .history/
 
