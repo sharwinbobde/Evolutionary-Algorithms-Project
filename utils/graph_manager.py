@@ -70,11 +70,13 @@ class GraphManager:
         instances = range(0,10)
         stem = '../data/maxcut/'
 
-        out = defaultdict(list)
+        out = defaultdict(dict)
         for s in all_sets:
             for n in V[s]:
+                arr = []
                 for i in instances:
-                    out[s].append(stem + s +'/n' + "{:07d}".format(n) + 'i' + "{:02d}".format(i) + 'txt')
+                    arr.append(stem + s +'/n' + "{:07d}".format(n) + 'i' + "{:02d}".format(i) + 'txt')
+                out[s][n] = arr
 
         return out
 
