@@ -25,7 +25,7 @@ Finding the population $n_{req}$ required to solve a problem 10/10 times
 
 - Over 10 different instances of the graph with same number of $v$, take the mean $\mu_{n_{req}}$ and the deviation $\pm \mu_{n_{req}} = \frac{max(n_{req})- min (n_{req})}{2}$
 
-- Save csv with columns `set_name`, `v`, `n_req_mean` and  `n_req_dev`
-- Then plot graph with `v` on the x-axis and `n_req_mean` on y-axis with symmetric yerr as `n_req_mean`
+- **Save csv with columns `set_name`, `v`, `n_req_mean`,  `n_req_max`, and `n_req_min`**
+- Then plot graph with `v` on the x-axis and `n_req_mean` on y-axis`
 
 
