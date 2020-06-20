@@ -49,7 +49,17 @@ class GraphManager:
 
         labels = nx.get_edge_attributes(self.G, 'weight')
         nx.draw_networkx_edge_labels(self.G, pos, edge_labels=labels)
-    
+
+    def evaluate_individual(self, individual):
+        setA = []
+        setB = []
+        for i in range(0, len(individual)):
+            if individual[i] == 0:
+                setA.append(i + 1)
+            else:
+                setB.append(i + 1)
+        return self.cut_cost(setA, setB)
+
     def cut_cost(self, set_A, set_B):
         return nx.cut_size(self.G, set_A, set_B, weight='weight')
 
