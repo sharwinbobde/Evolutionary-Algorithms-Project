@@ -1,0 +1,187 @@
+{
+    "set0a": {
+        "6": [
+            "./data/maxcut/set0a/n0000006i00.txt",
+            "./data/maxcut/set0a/n0000006i01.txt",
+            "./data/maxcut/set0a/n0000006i02.txt",
+            "./data/maxcut/set0a/n0000006i03.txt",
+            "./data/maxcut/set0a/n0000006i04.txt"
+        ],
+        "12": [
+            "./data/maxcut/set0a/n0000012i00.txt",
+            "./data/maxcut/set0a/n0000012i01.txt",
+            "./data/maxcut/set0a/n0000012i02.txt",
+            "./data/maxcut/set0a/n0000012i03.txt",
+            "./data/maxcut/set0a/n0000012i04.txt"
+        ],
+        "25": [
+            "./data/maxcut/set0a/n0000025i00.txt",
+            "./data/maxcut/set0a/n0000025i01.txt",
+            "./data/maxcut/set0a/n0000025i02.txt",
+            "./data/maxcut/set0a/n0000025i03.txt",
+            "./data/maxcut/set0a/n0000025i04.txt"
+        ],
+        "50": [
+            "./data/maxcut/set0a/n0000050i00.txt",
+            "./data/maxcut/set0a/n0000050i01.txt",
+            "./data/maxcut/set0a/n0000050i02.txt",
+            "./data/maxcut/set0a/n0000050i03.txt",
+            "./data/maxcut/set0a/n0000050i04.txt"
+        ],
+        "100": [
+            "./data/maxcut/set0a/n0000100i00.txt",
+            "./data/maxcut/set0a/n0000100i01.txt",
+            "./data/maxcut/set0a/n0000100i02.txt",
+            "./data/maxcut/set0a/n0000100i03.txt",
+            "./data/maxcut/set0a/n0000100i04.txt"
+        ]
+    },
+    "set0b": {
+        "9": [
+            "./data/maxcut/set0b/n0000009i00.txt",
+            "./data/maxcut/set0b/n0000009i01.txt",
+            "./data/maxcut/set0b/n0000009i02.txt",
+            "./data/maxcut/set0b/n0000009i03.txt",
+            "./data/maxcut/set0b/n0000009i04.txt"
+        ],
+        "16": [
+            "./data/maxcut/set0b/n0000016i00.txt",
+            "./data/maxcut/set0b/n0000016i01.txt",
+            "./data/maxcut/set0b/n0000016i02.txt",
+            "./data/maxcut/set0b/n0000016i03.txt",
+            "./data/maxcut/set0b/n0000016i04.txt"
+        ],
+        "25": [
+            "./data/maxcut/set0b/n0000025i00.txt",
+            "./data/maxcut/set0b/n0000025i01.txt",
+            "./data/maxcut/set0b/n0000025i02.txt",
+            "./data/maxcut/set0b/n0000025i03.txt",
+            "./data/maxcut/set0b/n0000025i04.txt"
+        ],
+        "49": [
+            "./data/maxcut/set0b/n0000049i00.txt",
+            "./data/maxcut/set0b/n0000049i01.txt",
+            "./data/maxcut/set0b/n0000049i02.txt",
+            "./data/maxcut/set0b/n0000049i03.txt",
+            "./data/maxcut/set0b/n0000049i04.txt"
+        ],
+        "100": [
+            "./data/maxcut/set0b/n0000100i00.txt",
+            "./data/maxcut/set0b/n0000100i01.txt",
+            "./data/maxcut/set0b/n0000100i02.txt",
+            "./data/maxcut/set0b/n0000100i03.txt",
+            "./data/maxcut/set0b/n0000100i04.txt"
+        ]
+    },
+    "set0c": {
+        "9": [
+            "./data/maxcut/set0c/n0000009i00.txt",
+            "./data/maxcut/set0c/n0000009i01.txt",
+            "./data/maxcut/set0c/n0000009i02.txt",
+            "./data/maxcut/set0c/n0000009i03.txt",
+            "./data/maxcut/set0c/n0000009i04.txt"
+        ],
+        "16": [
+            "./data/maxcut/set0c/n0000016i00.txt",
+            "./data/maxcut/set0c/n0000016i01.txt",
+            "./data/maxcut/set0c/n0000016i02.txt",
+            "./data/maxcut/set0c/n0000016i03.txt",
+            "./data/maxcut/set0c/n0000016i04.txt"
+        ],
+        "25": [
+            "./data/maxcut/set0c/n0000025i00.txt",
+            "./data/maxcut/set0c/n0000025i01.txt",
+            "./data/maxcut/set0c/n0000025i02.txt",
+            "./data/maxcut/set0c/n0000025i03.txt",
+            "./data/maxcut/set0c/n0000025i04.txt"
+        ],
+        "49": [
+            "./data/maxcut/set0c/n0000049i00.txt",
+            "./data/maxcut/set0c/n0000049i01.txt",
+            "./data/maxcut/set0c/n0000049i02.txt",
+            "./data/maxcut/set0c/n0000049i03.txt",
+            "./data/maxcut/set0c/n0000049i04.txt"
+        ],
+        "100": [
+            "./data/maxcut/set0c/n0000100i00.txt",
+            "./data/maxcut/set0c/n0000100i01.txt",
+            "./data/maxcut/set0c/n0000100i02.txt",
+            "./data/maxcut/set0c/n0000100i03.txt",
+            "./data/maxcut/set0c/n0000100i04.txt"
+        ]
+    },
+    "set0d": {
+        "6": [
+            "./data/maxcut/set0d/n0000006i00.txt",
+            "./data/maxcut/set0d/n0000006i01.txt",
+            "./data/maxcut/set0d/n0000006i02.txt",
+            "./data/maxcut/set0d/n0000006i03.txt",
+            "./data/maxcut/set0d/n0000006i04.txt"
+        ],
+        "12": [
+            "./data/maxcut/set0d/n0000012i00.txt",
+            "./data/maxcut/set0d/n0000012i01.txt",
+            "./data/maxcut/set0d/n0000012i02.txt",
+            "./data/maxcut/set0d/n0000012i03.txt",
+            "./data/maxcut/set0d/n0000012i04.txt"
+        ],
+        "25": [
+            "./data/maxcut/set0d/n0000025i00.txt",
+            "./data/maxcut/set0d/n0000025i01.txt",
+            "./data/maxcut/set0d/n0000025i02.txt",
+            "./data/maxcut/set0d/n0000025i03.txt",
+            "./data/maxcut/set0d/n0000025i04.txt"
+        ],
+        "50": [
+            "./data/maxcut/set0d/n0000050i00.txt",
+            "./data/maxcut/set0d/n0000050i01.txt",
+            "./data/maxcut/set0d/n0000050i02.txt",
+            "./data/maxcut/set0d/n0000050i03.txt",
+            "./data/maxcut/set0d/n0000050i04.txt"
+        ],
+        "100": [
+            "./data/maxcut/set0d/n0000100i00.txt",
+            "./data/maxcut/set0d/n0000100i01.txt",
+            "./data/maxcut/set0d/n0000100i02.txt",
+            "./data/maxcut/set0d/n0000100i03.txt",
+            "./data/maxcut/set0d/n0000100i04.txt"
+        ]
+    },
+    "set0e": {
+        "6": [
+            "./data/maxcut/set0e/n0000006i00.txt",
+            "./data/maxcut/set0e/n0000006i01.txt",
+            "./data/maxcut/set0e/n0000006i02.txt",
+            "./data/maxcut/set0e/n0000006i03.txt",
+            "./data/maxcut/set0e/n0000006i04.txt"
+        ],
+        "12": [
+            "./data/maxcut/set0e/n0000012i00.txt",
+            "./data/maxcut/set0e/n0000012i01.txt",
+            "./data/maxcut/set0e/n0000012i02.txt",
+            "./data/maxcut/set0e/n0000012i03.txt",
+            "./data/maxcut/set0e/n0000012i04.txt"
+        ],
+        "25": [
+            "./data/maxcut/set0e/n0000025i00.txt",
+            "./data/maxcut/set0e/n0000025i01.txt",
+            "./data/maxcut/set0e/n0000025i02.txt",
+            "./data/maxcut/set0e/n0000025i03.txt",
+            "./data/maxcut/set0e/n0000025i04.txt"
+        ],
+        "50": [
+            "./data/maxcut/set0e/n0000050i00.txt",
+            "./data/maxcut/set0e/n0000050i01.txt",
+            "./data/maxcut/set0e/n0000050i02.txt",
+            "./data/maxcut/set0e/n0000050i03.txt",
+            "./data/maxcut/set0e/n0000050i04.txt"
+        ],
+        "100": [
+            "./data/maxcut/set0e/n0000100i00.txt",
+            "./data/maxcut/set0e/n0000100i01.txt",
+            "./data/maxcut/set0e/n0000100i02.txt",
+            "./data/maxcut/set0e/n0000100i03.txt",
+            "./data/maxcut/set0e/n0000100i04.txt"
+        ]
+    }
+}

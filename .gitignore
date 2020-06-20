@@ -12,6 +12,8 @@ settings.json
 *.jpg
 *.png
 
+particle_swarm/pyswarms_/*
+*.pkl
 # Local History for Visual Studio Code
 .history/
 
