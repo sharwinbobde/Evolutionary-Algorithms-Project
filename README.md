@@ -13,7 +13,7 @@ save the maxcut instances under `/data/maxcut`. Example of a `.txt` file relativ
 
 ## Methodology
 
-### Scalability analysis
+### Finding `n_req` Scalability analysis
 - Let problem size be number of vertices $v$
 - number of $v$ can be obrained from the *static method* GraphManager.get_graph_files()
 
@@ -23,9 +23,16 @@ Finding the population $n_{req}$ required to solve a problem 10/10 times
 - Let $n_{lower} = \frac{n_{upper}}{2}$
 - Search $n_{req}$ between $n_{lower}$ and $n_{upper}$ by increasing $n$ by a factor of ***1.1*** each time
 
-- Over 10 different instances of the graph with same number of $v$, take the mean $\mu_{n_{req}}$ and the deviation $\pm \mu_{n_{req}} = \frac{max(n_{req})- min (n_{req})}{2}$
 
-- **Save csv with columns `set_name`, `v`, `n_req_mean`,  `n_req_max`, and `n_req_min`**
-- Then plot graph with `v` on the x-axis and `n_req_mean` on y-axis`
 
+## Model Comparisons
+We will be doing the comparison for both Black-box and Grey/White-box approach.
+Save all observations in csv as following:
+  - filename `<EA-used>-<metric name>-<set_name>.csv` 
+  - with the columns `v`, `<metric name>_mean`,  `<metric name>_std`
+  - Example: `particle_swarm-num_eval-set0b.csv` with columns `v`, `num_eval_mean`, `num_eval_std`
+
+### Metrics
+- number of fitness evaluations (mean and std. for 10 runs of 5 graphs per problem set) (`num_eval`)
+- runtime in sec. (mean and std. for 10 runs of 5 graphs per problem set)   (`runtime`)
 
