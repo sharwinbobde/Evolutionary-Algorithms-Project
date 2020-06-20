@@ -144,7 +144,7 @@ class BinaryPSO(DiscreteSwarmOptimizer):
         self.name = __name__
 
     def optimize(
-        self, objective_func, iters, n_processes=None, verbose=True, **kwargs
+        self, objective_func, iters, n_processes=None, verbose=True, optima = -np.inf, **kwargs
     ):
         """Optimize the swarm for a number of iterations
 
@@ -232,6 +232,14 @@ class BinaryPSO(DiscreteSwarmOptimizer):
                 self.swarm, self.velocity_clamp, self.vh
             )
             self.swarm.position = self._compute_position(self.swarm)
+
+            # SHARWIN
+            '''
+            If optima is met then break
+            '''
+            if self.swarm.best_cost <= optima:
+                break
+
         # Obtain the final best_cost and the final best_position
         final_best_cost = self.swarm.best_cost.copy()
         final_best_pos = self.swarm.pbest_pos[

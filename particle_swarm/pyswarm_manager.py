@@ -16,26 +16,37 @@ class PySwarmManager:
         self.particles_array = [Particle(graph_manager) for i in range(particles)]
 
         if options == None:
-            options = {'c1': 0.5, 'c2':0.3, 'w':0.9, 'k':3, 'p':2}
+            options = {'c1': 0.5, 'c2':0.3, 'w':0.9, 'k':5, 'p':2}
+
+        # dont let neighbours be an issue
+        options['k'] = np.min([particles, options['k']])
 
         bounds = (0.0, self.gm.G.size(weight='weight')) # unused :( no bounds for binary po
         # print(bounds)
 
         # dimensions is same as no of nodes
-        self.optimizer =ps.binary.BinaryPSO(n_particles=particles, dimensions=graph_manager.G.number_of_nodes(), options=options)
+        self.optimizer =ps.binary.BinaryPSO(n_particles=particles,
+                                            dimensions=graph_manager.G.number_of_nodes(),
+                                            options=options)
+
+
 
     def objective_function(self, params):
+        ''' used internally '''
         losses = []
         for i in range(self.n_particles):
             losses.append(self.particles_array[i].compute_cost(params[i]))
         return np.array(losses)
 
-    def optimise(self):
+    def optimise(self, verbose=False):
 
-        cost, pos = self.optimizer.optimize(self.objective_function, self.max_iter)
+        cost, pos = self.optimizer.optimize(self.objective_function,
+                                            iters=self.max_iter, 
+                                            verbose=verbose,
+                                            optima = 0.0)
 
         if cost == 0.0:
-            self.optima_found=0
+            self.optima_found=True
 
         self.elite_cost = cost
         self.elite_param = pos
