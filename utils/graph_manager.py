@@ -61,15 +61,12 @@ class GraphManager:
         return self.cut_cost(setA, setB)
 
     def cut_cost(self, set_A, set_B):
-        return nx.cut_size(self.G, set_A, set_B, weight='weight')
+        return int(nx.cut_size(self.G, set_A, set_B, weight='weight'))
 
     @staticmethod
     def get_graph_files():
         from collections import defaultdict
-        '''
-        param set: None = all, 'set0a', 'set0b', 'set0c', 'set0d'
-        '''
-        all_sets = ['set0a', 'set0b', 'set0c', 'set0d']
+        all_sets = ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']
         V = {
             'set0a':[6, 12, 25, 50, 100],
             'set0b':[9, 16, 25, 49, 100],
@@ -77,15 +74,15 @@ class GraphManager:
             'set0d':[6, 12, 25, 50, 100], # has upto 200 but didnt consider
             'set0e':[6, 12, 25, 50, 100], # has upto 200 but didnt consider
         }
-        instances = range(0,10)
-        stem = '../data/maxcut/'
+        instances = range(5)
+        stem = './data/maxcut/'
 
         out = defaultdict(dict)
         for s in all_sets:
             for n in V[s]:
                 arr = []
                 for i in instances:
-                    arr.append(stem + s +'/n' + "{:07d}".format(n) + 'i' + "{:02d}".format(i) + 'txt')
+                    arr.append(stem + s +'/n' + "{:07d}".format(n) + 'i' + "{:02d}".format(i) + '.txt')
                 out[s][n] = arr
 
         return out
