@@ -28,11 +28,15 @@ Finding the population $n_{req}$ required to solve a problem 10/10 times
 ## Model Comparisons
 We will be doing the comparison for both Black-box and Grey/White-box approach.
 Save all observations in csv as following:
-  - filename `<EA-used>-<metric name>-<set_name>.csv` 
+  - filename `<EA-used>-<B or W><metric name>-<set_name>.csv` 
   - with the columns `v`, `<metric name>_mean`,  `<metric name>_std`
-  - Example: `particle_swarm-num_eval-set0b.csv` with columns `v`, `num_eval_mean`, `num_eval_std`
+  - Examples: 
+    - `particle_swarm-B-num_eval-set0b.csv` with columns `v`, `num_eval_mean`, `num_eval_std`
+    - `particle_swarm-W-runtime-set0a.csv` with columns `v`, `runtime_mean`, `runtime_std`
+    - `particle_swarm-B-gen-set0c.csv` with columns `v`, `gen_mean`, `gen_std`
 
 ### Metrics
 - number of fitness evaluations (mean and std. for 10 runs of 5 graphs per problem set) (`num_eval`)
 - runtime in sec. (mean and std. for 10 runs of 5 graphs per problem set)   (`runtime`)
+- Np. of generations. (mean and std. for 10 runs of 5 graphs per problem set)   (`gen`)
 
