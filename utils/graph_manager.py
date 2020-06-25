@@ -41,10 +41,17 @@ class GraphManager:
             G.add_edge(edge[0], edge[1], weight=edge[2])
         self.G = G
 
-    def draw_graph(self):
+    def draw_graph(self, method='planar'):
         fig = plt.figure(figsize=(14,8))
         # pos = nx.planar_layout(self.G)
-        pos = nx.nx_agraph.graphviz_layout(self.G)
+        if method == 'planar':
+            pos = nx.nx_agraph.graphviz_layout(self.G)
+        if method == 'spectral':
+            pos = nx.spectral_layout(self.G)
+        if method == 'kk':
+            pos = nx.kamada_kawai_layout(self.G)
+        if method == 'spring':
+            pos = nx.spring_layout(self.G)
         nx.draw_networkx(self.G, pos)
 
         labels = nx.get_edge_attributes(self.G, 'weight')
@@ -59,6 +66,17 @@ class GraphManager:
             else:
                 setB.append(i + 1)
         return self.cut_cost(setA, setB)
+    
+    def is_optima(self, individual):
+        setA = []
+        setB = []
+        for i in range(0, len(individual)):
+            if individual[i] == 0:
+                setA.append(i + 1)
+            else:
+                setB.append(i + 1)
+        return self.cut_cost(setA, setB) == self.bkv
+
 
     def cut_cost(self, set_A, set_B):
         return int(nx.cut_size(self.G, set_A, set_B, weight='weight'))
