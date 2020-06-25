@@ -21,7 +21,7 @@ class PySwarmManager:
         # dont let neighbours be an issue
         options['k'] = np.min([particles, options['k']])
 
-        bounds = (0.0, self.gm.G.size(weight='weight')) # unused :( no bounds for binary po
+        # bounds = (0.0, self.gm.G.size(weight='weight')) # unused :( no bounds for binary po
         # print(bounds)
 
         # dimensions is same as no of nodes
