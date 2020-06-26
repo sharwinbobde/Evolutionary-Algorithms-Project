@@ -5,11 +5,13 @@ import numpy as np
 
 class PySwarmManager:
 
-    def __init__(self, particles, graph_manager, options=None, max_iter = 1000):
+    def __init__(self, particles, graph_manager, options=None, max_iter = 1000, WhiteBox=False):
         super().__init__()
         self.max_iter = max_iter
         self.n_particles = particles
         self.gm = graph_manager
+        self.set_name = graph_manager.set_name
+        self.WhiteBox = WhiteBox
 
         self.optima_found = False
 
@@ -21,12 +23,22 @@ class PySwarmManager:
         # dont let neighbours be an issue
         options['k'] = np.min([particles, options['k']])
 
-        # bounds = (0.0, self.gm.G.size(weight='weight')) # unused :( no bounds for binary po
-        # print(bounds)
+
+        dimensions=graph_manager.G.number_of_nodes()
+        # init_pos = np.zeros((particles, dimensions), dtype=int)
+        # i=0
+        # for i in range(particles):
+        #     j=0 + (i%2)
+        #     while j < dimensions:
+        #         init_pos[i,j]=1
+        #         j += 2
+        # print(init_pos)
 
         # dimensions is same as no of nodes
         self.optimizer =ps.binary.BinaryPSO(n_particles=particles,
-                                            dimensions=graph_manager.G.number_of_nodes(),
+                                            dimensions=dimensions,
+                                            # init_pos=init_pos,
+                                            gm=self.gm,
                                             options=options)
 
 
@@ -35,7 +47,10 @@ class PySwarmManager:
         ''' used internally '''
         losses = []
         for i in range(self.n_particles):
-            losses.append(self.particles_array[i].compute_cost(params[i]))
+            if self.WhiteBox:
+                losses.append(self.particles_array[i].compute_cost(params[i], self.set_name))
+            else:
+                losses.append(self.particles_array[i].compute_cost(params[i]))
         return np.array(losses)
 
     def optimise(self, verbose=False):
@@ -43,9 +58,9 @@ class PySwarmManager:
         cost, pos = self.optimizer.optimize(self.objective_function,
                                             iters=self.max_iter, 
                                             verbose=verbose,
-                                            optima = 0.0)
+                                            optima = True)
 
-        if cost == 0.0:
+        if self.gm.is_optima(pos):
             self.optima_found=True
 
         self.elite_cost = cost

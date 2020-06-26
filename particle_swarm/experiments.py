@@ -169,10 +169,13 @@ def vary_c1_c2():
         'set0c':16, 
         'set0d':12, 
         'set0e':12, 
+        # 'set0e':25, 
     }
 
+    all_sets = ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']
+    all_sets = ['set0e']
     set_files = GraphManager.get_graph_files()
-    for set_name in list(set_files.keys()):
+    for set_name in all_sets:
         v = V[set_name]
         gm = GraphManager(set_files[set_name][v][0], verbose=True)
         sets = []
@@ -208,12 +211,14 @@ def vary_c1_c2():
 
 def plot_c1_c2():
 
-    for set_name in ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']: 
+    all_sets = ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']
+    # all_sets = ['set0e']
+    for set_name in all_sets: 
         df = pd.read_csv('results/c1_c2_variation_'+set_name+'.csv')
         fig = plt.figure(figsize=(14,8))
         fig.suptitle('c1, c2 variation plot for ' + set_name)
 
-        # is_inlier = df['Z'] < 250 # uncomment for removing outliers for set0e :/
+        # is_inlier = df['Z'] < 50 # uncomment for removing outliers for set0e :/
         # df1 = df[is_inlier][['c1', 'c2', 'Z']]
 
         df1 = df[['c1', 'c2', 'Z']] # comment for removing outliers for set0e :/
@@ -227,7 +232,7 @@ def plot_c1_c2():
         # rotate for convenience
         ax.view_init(elev=40, azim=45)
         fig.colorbar(surf, shrink=0.5, aspect=5)
-        plt.savefig('images/c1_c2_'+set_name+'.jpeg')
+        # plt.savefig('images/c1_c2_'+set_name+'.jpeg')
         plt.show()
 
 
@@ -434,6 +439,108 @@ def black_Box_evaluations():
                     'gen_std': Gens_std,
                 }).to_csv('results/particle_swarm-B-gen-'+set_name+'.csv', index=False)
 
+def White_Box_evaluations():
+    n_req_arr = {
+        'set0a': {
+            6: 5,
+            12: 33,
+            25: 152
+        },
+        'set0b':{
+            9: 5,
+            16: 30,
+            25: 70
+        },
+        'set0c':{
+            9: 7,
+            16: 10,
+            25: 256
+        },
+        'set0d':{
+            6: 2,
+            12: 7,
+            25: 11,
+        }, 
+        'set0e':{
+            6: 7,
+            12: 30,
+            25: 260,
+        },  
+    }
+
+    OPTIMAL_OPTIONS_PER_SET = {
+        'set0a': {'c1': 4.0, 'c2':3.5, 'w':0.96, 'k':6, 'p':2},
+        'set0b': {'c1': 4.5, 'c2':5.5, 'w':0.87, 'k':6, 'p':2},
+
+        'set0c': {'c1': 4.5, 'c2':5.5, 'w':0.86, 'k':6, 'p':2},
+        'set0d': {'c1': 5.5, 'c2':5.0, 'w':0.96, 'k':6, 'p':2},
+        'set0e': {'c1': 5.0, 'c2':3.75, 'w':0.9, 'k':6, 'p':2},
+    }
+
+    files = GraphManager.get_graph_files()
+    # all_sets = ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']
+    all_sets = [] # add set name to compute here
+
+    for set_name in all_sets:
+        print(set_name)
+        V = []
+        Evals_mean, Evals_std = [], []
+        Runtimes_mean, Runtimes_std = [], []
+        Gens_mean, Gens_std = [], []
+        for v in list(n_req_arr[set_name].keys()):
+            print('\nv = ' + str(v))
+            V.append(v)
+            evals = []
+            runtimes = []
+            gens = []
+
+            for file in files[set_name][v]:
+                print('f.', end='')
+                gm = GraphManager(file)
+                n_req = n_req_arr[set_name][v] 
+                options = OPTIMAL_OPTIONS_PER_SET[set_name]
+
+                options['k'] = np.max([int(v/3),3])
+
+                res = TestBench.ten_runs_parallel(n_req, gm,
+                            max_iter=10000,
+                            strict_optima=True,
+                            # verbose=True,
+                            options=options,
+                            WhiteBox=True
+                        )
+                
+                evals.append(res['num_evals'])
+                runtimes.append(res['runtime'])
+                gens.append(res['elite at iteration'])
+
+            Evals_mean.append(np.mean(evals))
+            Evals_std.append(np.std(evals))
+
+            Runtimes_mean.append(np.mean(runtimes))
+            Runtimes_std.append(np.std(runtimes))
+            
+            Gens_mean.append(np.mean(gens))
+            Gens_std.append(np.std(gens))
+
+            pd.DataFrame({
+                    'v': V,
+                    'num_eval_mean': Evals_mean,
+                    'num_eval_std': Evals_std,
+                }).to_csv('results/particle_swarm-W-num_eval-'+set_name+'.csv', index=False)
+
+            pd.DataFrame({
+                    'v': V,
+                    'runtime_mean': Runtimes_mean,
+                    'runtime_std': Runtimes_std,
+                }).to_csv('results/particle_swarm-W-runtime-'+set_name+'.csv', index=False)
+
+            pd.DataFrame({
+                    'v': V,
+                    'gen_mean': Gens_mean,
+                    'gen_std': Gens_std,
+                }).to_csv('results/particle_swarm-W-gen-'+set_name+'.csv', index=False)
+
 
 if __name__ == "__main__":
 
@@ -456,8 +563,9 @@ if __name__ == "__main__":
     # n_req_analysis()
     # plot_n_req()
 
-    black_Box_evaluations()
+    # Black_Box_evaluations()
 
 
 
     # Grey/White-Box
+    White_Box_evaluations()
