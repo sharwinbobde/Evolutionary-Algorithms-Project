@@ -107,7 +107,7 @@ class TestBench:
     #     return
 
     @staticmethod
-    def ten_runs_parallel(particles, graph_manager, options=None, max_iter=1000, strict_optima=False, verbose=False):
+    def ten_runs_parallel(particles, graph_manager, options=None, max_iter=1000, strict_optima=False, verbose=False, WhiteBox=False):
         '''
         strict_optima: if optima not found in a run then dont do other runs
         '''
@@ -118,7 +118,7 @@ class TestBench:
 
         # unique instances for jobs and solvers :/
         jobs = [SingleJob() for i in range(10)]
-        solvers = [PySwarmManager(particles, graph_manager=graph_manager, options=options, max_iter=max_iter) for i in range(10)]
+        solvers = [PySwarmManager(particles, graph_manager=graph_manager, options=options, max_iter=max_iter, WhiteBox=WhiteBox) for i in range(10)]
         
         
         processes = []
@@ -174,7 +174,8 @@ class SingleJob:
         result['cost_per_iteration'] = solver.optimizer.cost_history
         result['runtime'] = end - start
         if solver.optima_found:
-            result['elite at iteration'] = np.where(cost_per_iteration == 0.0)[0][0]
+            result['elite at iteration'] = np.argmin(cost_per_iteration)
+            # print(result['elite at iteration'])
             result['num_evals'] = result['elite at iteration'] * solver.n_particles
         # print('single_run_parallel: ' + str(i))
         # print(solver)

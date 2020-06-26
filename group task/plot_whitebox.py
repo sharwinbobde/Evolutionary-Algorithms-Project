@@ -28,7 +28,7 @@ if __name__ == "__main__":
             Yerr = []
             labels = []
             for EA in ['particle_swarm', 'tabu_sGA', 'simple_ga']:
-                filename = 'combined_results/'+EA+'-B-'+metric+'-'+set_name+'.csv'
+                filename = 'combined_results/'+EA+'-W-'+metric+'-'+set_name+'.csv'
                 print(filename)
                 df = pd.read_csv(filename,sep=',')
                 # print(df)
@@ -43,6 +43,6 @@ if __name__ == "__main__":
                             yscale=Y_SCALE_PER_METRIC[metric],
                             y_start_at_0=True,
                             show_lims=True,
-                           title= 'BlackBox comparison for '+METRIC_PRETTY_NAME[metric] + ' for ' + set_name,
-                           savepath='images/BlackBox/BlackBox-'+metric+'-'+set_name+'.jpeg')
+                           title= 'WhiteBox comparison for '+METRIC_PRETTY_NAME[metric] + ' for ' + set_name,
+                           savepath='images/WhiteBox/WhiteBox-'+metric+'-'+set_name+'.jpeg')
             # exit(0)

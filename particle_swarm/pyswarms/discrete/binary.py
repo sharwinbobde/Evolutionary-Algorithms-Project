@@ -73,6 +73,7 @@ class BinaryPSO(DiscreteSwarmOptimizer):
         n_particles,
         dimensions,
         options,
+        gm,
         init_pos=None,
         velocity_clamp=None,
         vh_strategy="unmodified",
@@ -136,6 +137,7 @@ class BinaryPSO(DiscreteSwarmOptimizer):
             ftol=ftol,
             ftol_iter=ftol_iter,
         )
+        self.gm = gm
         # Initialize the resettable attributes
         self.reset()
         # Initialize the topology
@@ -144,7 +146,7 @@ class BinaryPSO(DiscreteSwarmOptimizer):
         self.name = __name__
 
     def optimize(
-        self, objective_func, iters, n_processes=None, verbose=True, optima = -np.inf, **kwargs
+        self, objective_func, iters, n_processes=None, verbose=True, optima = True, **kwargs
     ):
         """Optimize the swarm for a number of iterations
 
@@ -237,7 +239,10 @@ class BinaryPSO(DiscreteSwarmOptimizer):
             '''
             If optima is met then break
             '''
-            if self.swarm.best_cost <= optima:
+            # if self.swarm.best_cost <= optima:
+            #     break
+
+            if self.gm.is_optima(self.swarm.pbest_pos[self.swarm.pbest_cost.argmin()]):
                 break
 
         # Obtain the final best_cost and the final best_position

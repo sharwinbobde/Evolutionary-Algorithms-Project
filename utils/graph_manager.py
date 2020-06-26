@@ -9,8 +9,9 @@ class GraphManager:
 
         self.read_file(filename)
         self.make_graph()
+        self.set_name = re.findall(r'set0[abcde]', filename)[0]
 
-        bkv_filename = re.findall('^[\.]{0,1}.*(?=[\.])', filename)[0] + '.bkv'
+        bkv_filename = re.findall(r'^[\.]{0,1}.*(?=[\.])', filename)[0] + '.bkv'
         with open(bkv_filename, 'r') as f:
             self.bkv = list(map(int, f.readline().split()))[0]
         if self.verbose:
@@ -68,6 +69,7 @@ class GraphManager:
         return self.cut_cost(setA, setB)
     
     def is_optima(self, individual):
+        # print(individual)
         setA = []
         setB = []
         for i in range(0, len(individual)):
@@ -75,11 +77,23 @@ class GraphManager:
                 setA.append(i + 1)
             else:
                 setB.append(i + 1)
-        return self.cut_cost(setA, setB) == self.bkv
+        return self.cut_cost(setA, setB) >= self.bkv
 
 
     def cut_cost(self, set_A, set_B):
-        return int(nx.cut_size(self.G, set_A, set_B, weight='weight'))
+        return nx.cut_size(self.G, set_A, set_B, weight='weight')
+
+    def cut_normalised_cost(self, set_A, set_B):
+        return nx.normalized_cut_size(self.G, set_A, set_B, weight='weight')
+
+    def cut_conductance(self, set_A, set_B):
+        return nx.conductance(self.G, set_A, set_B, weight='weight')
+
+    def cut_edge_expansion(self, set_A, set_B):
+        return nx.edge_expansion(self.G, set_A, set_B, weight='weight')
+
+    def cut_mixing_expansion(self, set_A, set_B):
+        return nx.mixing_expansion(self.G, set_A, set_B, weight='weight')
 
     @staticmethod
     def get_graph_files():
