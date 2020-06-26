@@ -12,7 +12,9 @@ settings.json
 *.code-workspace
 
 *.jpg
+*.jpeg
 *.png
+*.csv
 
 particle_swarm/pyswarms_/*
 *.pkl
