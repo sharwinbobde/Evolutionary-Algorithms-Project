@@ -14,6 +14,12 @@ METRIC_PRETTY_NAME = {
     'runtime': 'Runtime in sec'
 }
 
+Y_SCALE_PER_METRIC = {
+    'num_eval': 'linear',
+    'gen': 'linear',
+    'runtime': 'linear'
+}
+
 if __name__ == "__main__":
     for set_name in ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']:
         for metric in ['num_eval', 'gen', 'runtime']:
@@ -32,7 +38,7 @@ if __name__ == "__main__":
 
             plot_errorbars(X=X, Y=Y, yerr=Yerr, labels=labels,
                             xlab='| V |',
-                            # yscale='log',
+                            yscale=Y_SCALE_PER_METRIC[metric],
                            title= METRIC_PRETTY_NAME[metric] + ' for ' + set_name,
                            savepath='images/BlackBox-'+metric+'-'+set_name+'.jpeg')
             # exit(0)
