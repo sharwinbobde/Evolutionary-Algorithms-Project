@@ -54,7 +54,7 @@ class GraphManager:
         setA = []
         setB = []
         for i in range(0, len(individual)):
-            if individual[i] == 0:
+            if int(individual[i]) == 0:
                 setA.append(i + 1)
             else:
                 setB.append(i + 1)
