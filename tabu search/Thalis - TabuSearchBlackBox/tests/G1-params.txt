@@ -1,0 +1,3 @@
+private static int popSize = 15;
+    private static int gamma = 10000;
+    private static int a = 500;
