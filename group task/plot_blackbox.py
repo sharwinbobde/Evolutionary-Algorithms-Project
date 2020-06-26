@@ -22,12 +22,12 @@ Y_SCALE_PER_METRIC = {
 
 if __name__ == "__main__":
     for set_name in ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']:
-        for metric in ['num_eval', 'gen', 'runtime']:
+        for metric in ['num_eval', 'runtime']:
             X = []
             Y = []
             Yerr = []
             labels = []
-            for EA in ['particle_swarm', 'tabu_sGA', 'simple_ga']:
+            for EA in ['particle_swarm', 'tabu_sGA', 'simple_ga', 'fast_ga']:
                 filename = 'combined_results/'+EA+'-B-'+metric+'-'+set_name+'.csv'
                 print(filename)
                 df = pd.read_csv(filename,sep=',')
@@ -40,6 +40,7 @@ if __name__ == "__main__":
             # plot here: separate graph for each graph structure and metric
             plot_errorbars(X=X, Y=Y, yerr=Yerr, labels=labels,
                             xlab='number of vertices',
+                            ylab=metric + '(scale: '+Y_SCALE_PER_METRIC[metric]+')',
                             yscale=Y_SCALE_PER_METRIC[metric],
                             y_start_at_0=True,
                             show_lims=True,

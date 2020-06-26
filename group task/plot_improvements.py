@@ -22,8 +22,8 @@ Y_SCALE_PER_METRIC = {
 
 if __name__ == "__main__":
     for set_name in ['set0a', 'set0b', 'set0c', 'set0d', 'set0e']:
-        for metric in ['num_eval', 'gen', 'runtime']:
-            for EA in ['particle_swarm', 'tabu_sGA', 'simple_ga']:
+        for metric in ['num_eval', 'runtime']:
+            for EA in ['particle_swarm', 'tabu_sGA', 'simple_ga', 'fast_ga']:
                 X_W = []
                 Y_W = []
                 Yerr_W = []
@@ -59,6 +59,7 @@ if __name__ == "__main__":
                                 X_W=X_W, Y_W=Y_W, yerr_W=Yerr_W, labels_W=labels_W,
                                 X_B=X_B, Y_B=Y_B, yerr_B=Yerr_B, labels_B=labels_B,
                                 xlab='number of vertices',
+                                ylab=metric + '(scale: '+Y_SCALE_PER_METRIC[metric]+')',
                                 yscale=Y_SCALE_PER_METRIC[metric],
                                 y_start_at_0=True,
                                 title= 'WhiteBox vs BlackBox '+EA+' '+METRIC_PRETTY_NAME[metric] + ' for ' + set_name,
