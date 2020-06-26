@@ -14,8 +14,8 @@ evaluations = 0
 def get_relative_neighbours(node_count, edges):
     neighbours = [0] * node_count
     for e in edges:
-        neighbours[e[0]] += 1
-        neighbours[e[1]] += 1
+        neighbours[e[0] - 1] += 1
+        neighbours[e[1] - 1] += 1
     max_neighbours = max(neighbours)
     relative_neighbours = [x / max_neighbours for x in neighbours]
     return relative_neighbours
@@ -43,7 +43,10 @@ def create_individual(data):
 
 
 def mutate_individual(individual):
-    fast_mutation_operator.mutate(individual, inplace=True)
+    mutated_individual = fast_mutation_operator.mutate(individual, inplace=False)
+    for i in range(0, len(individual)):
+        if mask[i]:
+            individual[i] = mutated_individual[i]
 
 
 def n_req_analysis(graph_manager, beta):
@@ -98,11 +101,14 @@ def run_single_experiment(graph_manager, beta, generations, population_size, mut
     global evaluations
     evaluations = 0
     global fast_mutation_operator
+    global mask
 
     data = [graph_manager]
     parameter_count = data[0].n
 
     fast_mutation_operator = FastMutationOperator(parameter_count, beta=beta)
+    mask_percent = get_mask_percent(get_relative_neighbours(graph_manager.n, graph_manager.raw_edges))
+    mask = get_mask(mask_percent)
     ga = pyeasyga.GeneticAlgorithm(data,
                                    population_size=population_size,
                                    generations=generations,
@@ -236,7 +242,7 @@ def main():
     global fast_mutation_operator
 
     graphs = [
-        "set0a/n0000025i00.txt",
+        # "set0a/n0000025i00.txt",
         "set0b/n0000025i00.txt",
         "set0c/n0000025i00.txt",
         "set0d/n0000025i00.txt",
@@ -248,7 +254,7 @@ def main():
     mutation_rates = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     crossover_rates = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
-    # population(graphs, pop_sizes)
+    population(graphs, pop_sizes)
     beta(graphs, betas)
     mutation(graphs, mutation_rates)
     crossover(graphs, crossover_rates)
